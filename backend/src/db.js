@@ -2,14 +2,22 @@ import pg from 'pg';
 
 const { Pool } = pg;
 
-export const pool = new Pool({
-  host: process.env.DB_HOST || 'db',
-  port: parseInt(process.env.DB_PORT || '5432', 10),
-  user: process.env.DB_USER || 'tiferet',
-  password: process.env.DB_PASSWORD || 'tiferet',
-  database: process.env.DB_NAME || 'tiferet',
-  max: 10,
-});
+// אם הוגדר DATABASE_URL (למשל Supabase / שירות אירוח מנוהל) — נשתמש בו עם SSL.
+// אחרת — חיבור מקומי לפי משתני DB_* (Docker Compose).
+export const pool = process.env.DATABASE_URL
+  ? new Pool({
+      connectionString: process.env.DATABASE_URL,
+      ssl: { rejectUnauthorized: false },
+      max: 10,
+    })
+  : new Pool({
+      host: process.env.DB_HOST || 'db',
+      port: parseInt(process.env.DB_PORT || '5432', 10),
+      user: process.env.DB_USER || 'tiferet',
+      password: process.env.DB_PASSWORD || 'tiferet',
+      database: process.env.DB_NAME || 'tiferet',
+      max: 10,
+    });
 
 export const query = (text, params) => pool.query(text, params);
 
