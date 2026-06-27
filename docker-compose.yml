@@ -1,0 +1,55 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: tiferet-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${DB_USER:-tiferet}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-tiferet}
+      POSTGRES_DB: ${DB_NAME:-tiferet}
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./db/init:/docker-entrypoint-initdb.d:ro
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-tiferet}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build: ./backend
+    container_name: tiferet-backend
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: ${DB_USER:-tiferet}
+      DB_PASSWORD: ${DB_PASSWORD:-tiferet}
+      DB_NAME: ${DB_NAME:-tiferet}
+      JWT_SECRET: ${JWT_SECRET:-tiferet-dev-secret-change-me}
+      ADMIN_USER: ${ADMIN_USER:-admin}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-admin123}
+      UPLOAD_DIR: /app/uploads
+      PORT: 4000
+    volumes:
+      - uploads_data:/app/uploads
+    ports:
+      - "${BACKEND_PORT:-4000}:4000"
+
+  frontend:
+    build: ./frontend
+    container_name: tiferet-frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "${FRONTEND_PORT:-8080}:80"
+
+volumes:
+  db_data:
+  uploads_data:

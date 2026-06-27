@@ -1,0 +1,236 @@
+/* ============================================================
+   מערכת עיצוב — בית חב"ד תפארת מנחם
+   ============================================================ */
+:root {
+  --navy-900: #0c2447;
+  --navy-800: #0f2c54;
+  --navy-700: #133869;
+  --navy-600: #143a6b;
+  --blue-500: #2f86c9;
+  --blue-400: #6fb6e6;
+  --gold: #c98f2e;
+  --ink: #15212f;
+  --muted: #7c8a9a;
+  --muted-2: #5a6b7e;
+  --body: #46566a;
+  --line: #eef3f8;
+  --tint: #f3f9fd;
+  --tint-blue: #e2f0fa;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: #fff;
+  font-family: 'Assistant', sans-serif;
+  color: var(--ink);
+}
+a { text-decoration: none; color: inherit; }
+h1, h2, h3, h4 { font-family: 'Heebo', sans-serif; }
+input, textarea, select, button { font-family: 'Assistant', sans-serif; }
+img { max-width: 100%; }
+
+.wrap { max-width: 1180px; margin: 0 auto; }
+.section { padding: 72px 32px; }
+.eyebrow { font-family: 'Heebo', sans-serif; font-weight: 700; color: var(--blue-500); letter-spacing: .06em; font-size: 14px; margin-bottom: 10px; }
+.h2 { font-family: 'Heebo', sans-serif; font-weight: 800; font-size: 38px; margin: 0 0 6px; color: var(--navy-700); }
+.lead { color: var(--muted); font-size: 17px; margin: 0 0 34px; }
+
+/* ---------- ניווט ---------- */
+.nav {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(255,255,255,.94); backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--line);
+}
+.nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 15px 32px; }
+.nav-logo img { height: 50px; display: block; }
+.nav-links { display: flex; align-items: center; gap: 28px; font-weight: 600; font-size: 16px; color: #3a4a5e; }
+.nav-links a.active { color: var(--blue-500); }
+.nav-links a:hover { color: var(--blue-500); }
+.btn-donate {
+  font-weight: 700; font-size: 15px; color: #fff; background: var(--blue-500);
+  border-radius: 10px; padding: 11px 24px;
+}
+.nav-toggle { display: none; background: none; border: none; font-size: 26px; cursor: pointer; color: var(--navy-700); }
+
+/* ---------- כפתורים ---------- */
+.btn {
+  display: inline-block; font-weight: 700; border: none; border-radius: 12px;
+  padding: 15px 34px; cursor: pointer; font-size: 16px; transition: transform .12s, box-shadow .12s;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn-primary { color: #fff; background: var(--blue-500); box-shadow: 0 10px 24px rgba(47,134,201,.28); }
+.btn-light { color: var(--navy-700); background: #fff; box-shadow: 0 12px 30px rgba(0,0,0,.18); }
+.btn-ghost { color: #fff; background: rgba(255,255,255,.12); border: 1.5px solid rgba(255,255,255,.5); }
+.btn-block { width: 100%; }
+
+/* ---------- כרטיסים כלליים ---------- */
+.card { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 28px; box-shadow: 0 10px 28px rgba(19,56,105,.05); }
+.tile {
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Heebo', monospace; font-size: 12px; color: #fff; text-align: center;
+  border-radius: 16px; letter-spacing: .03em; overflow: hidden;
+}
+.tile img { width: 100%; height: 100%; object-fit: cover; }
+
+/* ---------- HERO ---------- */
+.hero {
+  position: relative; min-height: 600px; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; text-align: center;
+  padding: 96px 32px 150px; overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background: linear-gradient(120deg,#0f2c54,#1b4a8a,#2f86c9,#143a6b);
+  background-size: 320% 320%; animation: heroPan 18s ease infinite;
+}
+.hero-overlay { position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg,rgba(15,40,84,.70),rgba(19,56,105,.88)); }
+.hero-content { position: relative; z-index: 2; }
+@keyframes heroPan { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+.badge-pill {
+  display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,.16);
+  color: #eaf3fc; font-weight: 700; font-size: 14px; padding: 8px 18px; border-radius: 999px; margin-bottom: 26px;
+}
+.hero h1 {
+  font-weight: 800; font-size: 62px; line-height: 1.1; margin: 0 auto 22px; max-width: 840px;
+  color: #fff; letter-spacing: -.5px; text-shadow: 0 2px 26px rgba(0,0,0,.28);
+}
+.hero p { font-size: 22px; line-height: 1.6; color: #d4e4f5; margin: 0 auto 36px; max-width: 600px; }
+.hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+/* ---------- שורת סטטיסטיקות ---------- */
+.stat-row {
+  position: relative; z-index: 5; display: flex; justify-content: center;
+  background: #fff; border: 1px solid var(--line); border-radius: 18px;
+  max-width: 760px; margin: -58px auto 0; box-shadow: 0 20px 48px rgba(19,56,105,.16); overflow: hidden;
+}
+.stat-row > div { flex: 1; padding: 22px; text-align: center; }
+.stat-num { font-family: 'Heebo', sans-serif; font-weight: 800; font-size: 30px; color: var(--blue-500); }
+.stat-label { color: var(--muted); font-size: 14px; }
+.stat-sep { width: 1px; background: var(--line); flex: none !important; padding: 0 !important; }
+
+/* ---------- זמני תפילה ---------- */
+.times-grid { display: grid; grid-template-columns: repeat(3,1fr); border: 1px solid var(--line); border-radius: 20px; overflow: hidden; }
+.times-col { padding: 30px; border-left: 1px solid var(--line); }
+.times-col:last-child { border-left: none; }
+.times-cat { font-family: 'Heebo', sans-serif; font-weight: 700; font-size: 15px; color: var(--blue-500); margin-bottom: 18px; }
+.times-row { display: flex; justify-content: space-between; padding: 11px 0; border-bottom: 1px solid #f2f6fa; }
+.times-row:last-child { border-bottom: none; }
+.times-row span { color: var(--muted-2); }
+.times-row b { font-family: 'Heebo', sans-serif; font-size: 18px; color: var(--navy-700); }
+.shabbat-row { display: flex; gap: 16px; margin-top: 16px; flex-wrap: wrap; }
+.shabbat-card { flex: 1; min-width: 240px; display: flex; align-items: center; justify-content: space-between; border-radius: 16px; padding: 18px 26px; }
+.shabbat-card b { font-family: 'Heebo', sans-serif; font-size: 22px; }
+
+/* ---------- גריד גנרי ---------- */
+.grid { display: grid; gap: 16px; }
+.grid-2 { grid-template-columns: repeat(2,1fr); }
+.grid-3 { grid-template-columns: repeat(3,1fr); }
+.grid-4 { grid-template-columns: repeat(4,1fr); }
+
+/* ---------- שיעורים ---------- */
+.class-card { border: 1px solid var(--line); border-radius: 16px; padding: 22px; }
+.class-card.hl { border-color: var(--blue-500); background: var(--tint); }
+.class-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.day-chip { font-family: 'Heebo', sans-serif; font-weight: 700; color: var(--blue-500); background: var(--tint-blue); padding: 4px 12px; border-radius: 8px; font-size: 13px; }
+.day-chip.hl { color: #fff; background: var(--blue-500); }
+.class-title { font-family: 'Heebo', sans-serif; font-weight: 700; font-size: 18px; color: var(--navy-700); }
+.class-teacher { color: var(--muted); font-size: 14px; }
+
+/* ---------- מעגל השנה ---------- */
+.cycle-card { background: #fff; border-radius: 18px; overflow: hidden; border: 1px solid var(--line); position: relative; }
+.cycle-card.upcoming { border: 2px solid var(--blue-500); box-shadow: 0 10px 28px rgba(47,134,201,.14); }
+.cycle-badge { position: absolute; top: 14px; left: 14px; z-index: 2; background: #fff; color: var(--blue-500); font-size: 11px; font-weight: 700; padding: 4px 11px; border-radius: 999px; box-shadow: 0 2px 8px rgba(0,0,0,.15); }
+.cycle-img { height: 118px; }
+.cycle-body { padding: 20px; }
+.cycle-month { font-family: 'Heebo', sans-serif; font-weight: 700; font-size: 14px; margin-bottom: 6px; }
+.cycle-title { font-family: 'Heebo', sans-serif; font-weight: 800; font-size: 22px; color: var(--navy-700); margin-bottom: 8px; }
+.cycle-desc { color: var(--muted-2); font-size: 14px; margin: 0; line-height: 1.5; }
+
+/* ---------- המלצות ---------- */
+.tcard { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 28px; box-shadow: 0 12px 32px rgba(19,56,105,.06); }
+.tquote { font-family: 'Heebo', sans-serif; font-size: 54px; line-height: .5; color: #cfe3f3; height: 26px; }
+.tbody { font-size: 16px; line-height: 1.75; color: #3a4a5e; margin: 0 0 22px; }
+.tperson { display: flex; align-items: center; gap: 12px; }
+.tavatar { width: 46px; height: 46px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-family: 'Heebo', sans-serif; font-weight: 800; }
+.tname { font-family: 'Heebo', sans-serif; font-weight: 700; color: var(--navy-700); }
+.trole { color: var(--muted); font-size: 13px; }
+.stars { color: #f0b429; margin-top: 12px; font-size: 14px; letter-spacing: 2px; }
+
+/* ---------- אזור תרומה כהה ---------- */
+.donate-band { padding: 80px 32px; text-align: center; background: linear-gradient(180deg,#133869,#0f2c54); }
+.donate-band h2 { font-weight: 800; font-size: 40px; margin: 0 0 14px; color: #fff; }
+.donate-band p { font-size: 19px; color: #a8c2e0; margin: 0 auto 32px; max-width: 520px; line-height: 1.6; }
+.donate-chips { display: flex; gap: 12px; justify-content: center; margin-bottom: 30px; flex-wrap: wrap; }
+.donate-chip { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.18); border-radius: 14px; padding: 18px 30px; }
+.donate-chip.on { background: var(--blue-500); border-color: var(--blue-500); }
+.donate-chip .amt { font-family: 'Heebo', sans-serif; font-weight: 800; font-size: 26px; color: #fff; }
+.donate-chip .lbl { color: #8fb0d4; font-size: 13px; }
+
+/* ---------- טפסים ---------- */
+.field { margin-bottom: 16px; }
+.field label { display: block; font-family: 'Heebo', sans-serif; font-weight: 600; font-size: 13px; color: var(--muted-2); margin-bottom: 6px; }
+.field input, .field textarea, .field select {
+  width: 100%; border: 1.5px solid #e2eaf2; border-radius: 10px; padding: 12px 14px;
+  font-size: 15px; color: var(--ink); background: #fbfdfe;
+}
+.field input:focus, .field textarea:focus, .field select:focus { outline: none; border-color: var(--blue-500); }
+
+/* ---------- כרטיסי קשר ---------- */
+.contact-card { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 24px; text-align: center; box-shadow: 0 8px 24px rgba(19,56,105,.05); }
+.contact-icon { width: 50px; height: 50px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 22px; margin: 0 auto 12px; }
+.info-panel { background: var(--navy-700); border-radius: 22px; padding: 32px; color: #cfe0f2; }
+.info-panel .row { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 18px; }
+.info-panel .row b { font-family: 'Heebo', sans-serif; color: #fff; display: block; }
+
+/* ---------- עמוד פנימי גיבור ---------- */
+.page-hero { background: linear-gradient(160deg,#143a6b,#0f2c54); padding: 62px 32px 66px; position: relative; overflow: hidden; }
+.page-hero::before { content:''; position: absolute; left: -80px; top: -80px; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle,rgba(111,182,230,.22),transparent 70%); }
+.page-hero .crumb { color: #8fb0d4; font-size: 14px; margin-bottom: 12px; position: relative; }
+.page-hero h1 { font-weight: 800; font-size: 48px; margin: 0 0 14px; color: #fff; position: relative; }
+.page-hero p { font-size: 20px; line-height: 1.6; color: #cfe0f2; margin: 0; max-width: 620px; position: relative; }
+
+/* ---------- פוטר ---------- */
+.footer { background: var(--navy-900); padding: 54px 32px 28px; color: #a8c2e0; }
+.footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1.2fr; gap: 40px; padding-bottom: 30px; border-bottom: 1px solid rgba(255,255,255,.1); }
+.footer-logo { background: #fff; display: inline-block; padding: 9px 13px; border-radius: 12px; margin-bottom: 14px; }
+.footer-logo img { height: 46px; display: block; }
+.footer h4 { font-weight: 700; color: #fff; margin: 0 0 14px; }
+.footer-col a, .footer-col span { display: block; font-size: 15px; margin-bottom: 9px; color: #a8c2e0; }
+.footer-bottom { text-align: center; padding-top: 20px; font-size: 13px; color: #6e89ad; }
+
+/* ---------- הודעת מערכת ---------- */
+.toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); z-index: 999; background: var(--navy-700); color: #fff; padding: 14px 28px; border-radius: 12px; box-shadow: 0 12px 32px rgba(0,0,0,.25); font-weight: 600; }
+.toast.err { background: #b3261e; }
+
+/* ---------- רספונסיביות ---------- */
+@media (max-width: 860px) {
+  .nav-links { display: none; }
+  .nav-links.open {
+    display: flex; flex-direction: column; position: absolute; top: 72px; right: 0; left: 0;
+    background: #fff; padding: 20px 32px; gap: 18px; border-bottom: 1px solid var(--line);
+  }
+  .nav-toggle { display: block; }
+  .hero h1 { font-size: 40px; }
+  .hero p { font-size: 18px; }
+  .h2 { font-size: 30px; }
+  .grid-2, .grid-3, .grid-4, .times-grid { grid-template-columns: 1fr; }
+  .stat-row { flex-wrap: wrap; }
+  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+  .section { padding: 48px 20px; }
+  .split { grid-template-columns: 1fr !important; }
+}
+
+/* ---------- פריסת split ---------- */
+.split { display: grid; gap: 40px; align-items: center; }
+.split.a { grid-template-columns: 1.1fr .9fr; }
+.split.b { grid-template-columns: 1.05fr .95fr; align-items: stretch; }
+
+.center { text-align: center; }
+.muted { color: var(--muted); }
+
+@media (max-width: 700px) {
+  .gallery-grid { grid-template-columns: repeat(2,1fr) !important; }
+  .gallery-grid > div { grid-column: span 1 !important; grid-row: span 1 !important; }
+}

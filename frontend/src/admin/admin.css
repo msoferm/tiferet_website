@@ -1,0 +1,107 @@
+/* ============================================================
+   מערכת ניהול — עיצוב
+   ============================================================ */
+.adm { display: flex; min-height: 100vh; background: #f4f7fb; }
+
+/* סרגל צד */
+.adm-side {
+  width: 250px; background: #0c2447; color: #cfe0f2; flex-shrink: 0;
+  display: flex; flex-direction: column; position: sticky; top: 0; height: 100vh;
+}
+.adm-brand { padding: 22px 22px 16px; border-bottom: 1px solid rgba(255,255,255,.08); display: flex; align-items: center; gap: 12px; }
+.adm-brand img { height: 40px; background: #fff; border-radius: 8px; padding: 4px; }
+.adm-brand div { font-family: 'Heebo'; font-weight: 800; font-size: 16px; color: #fff; line-height: 1.3; }
+.adm-nav { flex: 1; overflow-y: auto; padding: 14px 12px; }
+.adm-nav .group { font-size: 12px; color: #6e89ad; padding: 14px 12px 6px; font-weight: 700; letter-spacing: .03em; }
+.adm-nav a {
+  display: flex; align-items: center; gap: 10px; padding: 11px 14px; border-radius: 10px;
+  color: #cfe0f2; font-size: 15px; font-weight: 600; margin-bottom: 2px;
+}
+.adm-nav a:hover { background: rgba(255,255,255,.06); }
+.adm-nav a.active { background: #2f86c9; color: #fff; }
+.adm-nav .badge { margin-inline-start: auto; background: #e6492d; color: #fff; font-size: 12px; border-radius: 999px; padding: 1px 8px; font-weight: 700; }
+.adm-foot { padding: 14px; border-top: 1px solid rgba(255,255,255,.08); }
+.adm-foot a { color: #8fb0d4; font-size: 14px; display: block; padding: 6px 8px; }
+.adm-foot button { width: 100%; background: rgba(255,255,255,.08); color: #fff; border: none; border-radius: 10px; padding: 10px; cursor: pointer; font-weight: 600; }
+
+/* תוכן */
+.adm-main { flex: 1; min-width: 0; }
+.adm-top { background: #fff; border-bottom: 1px solid #e6edf5; padding: 18px 30px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 10; }
+.adm-top h1 { font-family: 'Heebo'; font-size: 22px; margin: 0; color: #133869; }
+.adm-content { padding: 28px 30px; }
+
+/* כרטיסי דשבורד */
+.adm-cards { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin-bottom: 26px; }
+.adm-stat { background: #fff; border: 1px solid #e6edf5; border-radius: 16px; padding: 22px; }
+.adm-stat .n { font-family: 'Heebo'; font-weight: 800; font-size: 34px; color: #2f86c9; }
+.adm-stat .l { color: #7c8a9a; font-size: 14px; margin-top: 4px; }
+.adm-quick { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+.adm-quick a { background: #fff; border: 1px solid #e6edf5; border-radius: 14px; padding: 20px; display: flex; gap: 14px; align-items: center; }
+.adm-quick a:hover { border-color: #2f86c9; }
+.adm-quick .ic { width: 44px; height: 44px; border-radius: 12px; background: #e2f0fa; display: flex; align-items: center; justify-content: center; font-size: 22px; }
+
+/* טבלאות */
+.adm-panel { background: #fff; border: 1px solid #e6edf5; border-radius: 16px; overflow: hidden; }
+.adm-panel-head { display: flex; align-items: center; justify-content: space-between; padding: 18px 22px; border-bottom: 1px solid #eef3f8; }
+.adm-panel-head h2 { font-family: 'Heebo'; font-size: 18px; margin: 0; color: #133869; }
+.adm-table { width: 100%; border-collapse: collapse; }
+.adm-table th { text-align: right; font-size: 13px; color: #7c8a9a; font-weight: 700; padding: 12px 22px; border-bottom: 1px solid #eef3f8; background: #fafcfe; }
+.adm-table td { padding: 13px 22px; border-bottom: 1px solid #f2f6fa; font-size: 14px; color: #2c3a4c; vertical-align: middle; }
+.adm-table tr:last-child td { border-bottom: none; }
+.adm-table tr:hover td { background: #fafcfe; }
+.swatch { display: inline-block; width: 22px; height: 22px; border-radius: 6px; border: 1px solid rgba(0,0,0,.1); vertical-align: middle; }
+
+/* כפתורים */
+.bt { border: none; border-radius: 9px; padding: 9px 16px; cursor: pointer; font-weight: 700; font-size: 14px; font-family: 'Assistant'; }
+.bt-pri { background: #2f86c9; color: #fff; }
+.bt-pri:hover { background: #2674b3; }
+.bt-soft { background: #e2f0fa; color: #2f86c9; }
+.bt-danger { background: #fde8e6; color: #c0392b; }
+.bt-ghost { background: transparent; color: #5a6b7e; border: 1px solid #dce5ee; }
+.bt-sm { padding: 6px 12px; font-size: 13px; }
+.row-actions { display: flex; gap: 8px; justify-content: flex-end; }
+
+/* תגיות */
+.tag { display: inline-block; font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 999px; }
+.tag-new { background: #e6492d; color: #fff; }
+.tag-read { background: #e2eef8; color: #5a6b7e; }
+.tag-archived { background: #eceff3; color: #8a98a8; }
+.tag-on { background: #e2f5ee; color: #1d6b4f; }
+.tag-off { background: #eceff3; color: #8a98a8; }
+.tag-pending { background: #fdf2dd; color: #9a6a12; }
+.tag-paid { background: #e2f5ee; color: #1d6b4f; }
+
+/* מודאל */
+.modal-bg { position: fixed; inset: 0; background: rgba(12,36,71,.55); z-index: 100; display: flex; align-items: flex-start; justify-content: center; padding: 40px 20px; overflow-y: auto; }
+.modal { background: #fff; border-radius: 18px; width: 100%; max-width: 600px; box-shadow: 0 30px 80px rgba(0,0,0,.3); }
+.modal-head { padding: 20px 26px; border-bottom: 1px solid #eef3f8; display: flex; align-items: center; justify-content: space-between; }
+.modal-head h3 { font-family: 'Heebo'; font-size: 19px; margin: 0; color: #133869; }
+.modal-head button { background: none; border: none; font-size: 22px; cursor: pointer; color: #7c8a9a; }
+.modal-body { padding: 22px 26px; }
+.modal-foot { padding: 16px 26px; border-top: 1px solid #eef3f8; display: flex; gap: 10px; justify-content: flex-end; }
+.fld { margin-bottom: 16px; }
+.fld label { display: block; font-weight: 600; font-size: 13px; color: #5a6b7e; margin-bottom: 6px; }
+.fld input, .fld textarea, .fld select { width: 100%; border: 1.5px solid #e2eaf2; border-radius: 9px; padding: 10px 12px; font-size: 14px; color: #15212f; background: #fbfdfe; }
+.fld input:focus, .fld textarea:focus, .fld select:focus { outline: none; border-color: #2f86c9; }
+.fld-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.fld-check { display: flex; align-items: center; gap: 8px; }
+.fld-check input { width: auto; }
+
+/* התחברות */
+.login-bg { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(160deg,#143a6b,#0f2c54); padding: 20px; }
+.login-card { background: #fff; border-radius: 22px; padding: 44px; width: 100%; max-width: 400px; box-shadow: 0 30px 80px rgba(0,0,0,.3); }
+.login-card img { height: 56px; display: block; margin: 0 auto 18px; }
+.login-card h1 { font-family: 'Heebo'; text-align: center; font-size: 24px; color: #133869; margin: 0 0 4px; }
+.login-card p { text-align: center; color: #7c8a9a; margin: 0 0 26px; font-size: 15px; }
+.login-err { background: #fde8e6; color: #c0392b; padding: 11px 14px; border-radius: 9px; font-size: 14px; margin-bottom: 14px; text-align: center; }
+
+.adm-empty { padding: 50px; text-align: center; color: #9aa8b6; }
+.img-preview { width: 60px; height: 44px; object-fit: cover; border-radius: 6px; border: 1px solid #e2eaf2; }
+.help { color: #9aa8b6; font-size: 12px; margin-top: 4px; }
+
+@media (max-width: 820px) {
+  .adm-side { position: fixed; right: -250px; z-index: 60; transition: right .2s; }
+  .adm-side.open { right: 0; }
+  .adm-cards, .adm-quick { grid-template-columns: 1fr 1fr; }
+  .fld-row { grid-template-columns: 1fr; }
+}
