@@ -43,8 +43,7 @@ export default function AdminApp() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!auth.isLoggedIn) { setChecking(false); return; }
-    api.get('/auth/me').then((r) => setUser(r.user)).catch(() => auth.logout()).finally(() => setChecking(false));
+    api.get('/auth/me').then((r) => setUser(r.user || null)).catch(() => setUser(null)).finally(() => setChecking(false));
   }, []);
 
   useEffect(() => {

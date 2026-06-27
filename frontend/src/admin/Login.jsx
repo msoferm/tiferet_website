@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { api, auth } from '../lib/api.js';
 
 export default function Login({ onLogin }) {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [err, setErr] = useState('');
   const [busy, setBusy] = useState(false);
@@ -11,7 +11,7 @@ export default function Login({ onLogin }) {
     e.preventDefault();
     setErr(''); setBusy(true);
     try {
-      const r = await api.post('/auth/login', { username, password });
+      const r = await api.post('/auth/login', { email, password });
       auth.token = r.token;
       onLogin(r.user);
     } catch (e) { setErr(e.message); }
@@ -26,8 +26,8 @@ export default function Login({ onLogin }) {
         <p>בית חב״ד נחלאות · תפארת מנחם</p>
         {err && <div className="login-err">{err}</div>}
         <div className="fld">
-          <label>שם משתמש</label>
-          <input value={username} onChange={(e) => setUsername(e.target.value)} autoFocus placeholder="admin" />
+          <label>אימייל</label>
+          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} autoFocus placeholder="admin@tiferet.org.il" />
         </div>
         <div className="fld">
           <label>סיסמה</label>

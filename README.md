@@ -26,9 +26,41 @@
 ```
 Nginx מגיש את ה-React ומעביר (proxy) בקשות `/api` ו-`/uploads` לבקאנד.
 
+> סטאק ה-Docker לעיל משמש לפיתוח מקומי. **בענן** האתר רץ ללא שרת — ראו למטה.
+
 ---
 
-## 🚀 הפעלה מהירה
+## ☁️ פריסה בענן — Firebase + Supabase (ללא בקאנד)
+
+האתר החי רץ על **Firebase Hosting** (הפרונט) מול **Supabase** בלבד — אין שרת Express בענן.
+הפרונט מדבר ישירות מול Supabase (PostgREST + Auth + Storage), והגישה מאובטחת ע"י **RLS**.
+
+| רכיב | שירות |
+|------|--------|
+| 🌐 אתר (React build) | **Firebase Hosting** — `tiferetwebsite` |
+| 🗄️ מסד נתונים | **Supabase Postgres** |
+| 🔒 הרשאות | **RLS** — קריאה ציבורית לתוכן · הוספת הודעות/תרומות ל-anon · ניהול מלא למחוברים |
+| 👤 התחברות אדמין | **Supabase Auth** (אימייל/סיסמה) |
+| 🖼️ העלאת תמונות | **Supabase Storage** (bucket `uploads`) |
+
+**אתר חי:** https://tiferetwebsite.web.app · **ניהול:** https://tiferetwebsite.web.app/admin
+
+### בנייה ופריסה
+```bash
+cd frontend
+cp .env.example .env          # מלאו VITE_SUPABASE_URL + VITE_SUPABASE_ANON_KEY
+npm install
+npm run build
+cd ..
+firebase deploy --only hosting --project tiferetwebsite
+```
+
+> משתני ה-Supabase (URL + מפתח anon ציבורי) מוזרקים בזמן build דרך `frontend/.env`.
+> כל הגישה לנתונים מוגנת ב-RLS — לכן המפתח הציבורי בטוח לחשיפה בפרונט.
+
+---
+
+## 🚀 הפעלה מהירה (פיתוח מקומי עם Docker)
 
 ```bash
 # 1. העתקת קובץ הסביבה (כבר קיים .env מוכן)
