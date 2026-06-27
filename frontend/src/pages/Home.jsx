@@ -4,6 +4,16 @@ import { useFetch } from '../lib/useApi.js';
 import { api } from '../lib/api.js';
 import SiteLayout, { Tile } from '../components/SiteLayout.jsx';
 
+// חילוץ מזהה הסרטון מקישור יוטיוב (watch / youtu.be / embed / shorts / מזהה גולמי)
+function youtubeId(url) {
+  if (!url) return null;
+  const s = String(url).trim();
+  const m = s.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/|v\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/);
+  if (m) return m[1];
+  if (/^[A-Za-z0-9_-]{11}$/.test(s)) return s; // מזהה בלבד
+  return null;
+}
+
 export default function Home() {
   const { data, loading } = useFetch('/public/bootstrap');
   const [form, setForm] = useState({ name: '', phone: '', email: '', subject: 'שאלה כללית', message: '' });
@@ -13,6 +23,7 @@ export default function Home() {
   if (loading || !data) return <div className="center" style={{ padding: 120 }}>טוען…</div>;
 
   const s = data.settings;
+  const heroVideo = youtubeId(s.hero_video_url);
   const about = data.blocks.home_about || {};
   const aboutParas = (about.body || '').split('||');
 
@@ -37,6 +48,17 @@ export default function Home() {
       {/* HERO */}
       <div className="hero">
         <div className="hero-bg" />
+        {heroVideo && (
+          <div className="hero-video" aria-hidden="true">
+            <iframe
+              src={`https://www.youtube.com/embed/${heroVideo}?autoplay=1&mute=1&loop=1&playlist=${heroVideo}&controls=0&showinfo=0&modestbranding=1&rel=0&playsinline=1&disablekb=1&fs=0&iv_load_policy=3`}
+              title="רקע וידאו"
+              allow="autoplay; encrypted-media"
+              frameBorder="0"
+              tabIndex={-1}
+            />
+          </div>
+        )}
         <div className="hero-overlay" />
         <div className="hero-content">
           <div className="badge-pill">{s.tagline}</div>

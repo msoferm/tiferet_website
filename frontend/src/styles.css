@@ -85,6 +85,13 @@ img { max-width: 100%; }
   background: linear-gradient(120deg,#0f2c54,#1b4a8a,#2f86c9,#143a6b);
   background-size: 320% 320%; animation: heroPan 18s ease infinite;
 }
+.hero-video { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.hero-video iframe {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  width: 100vw; height: 56.25vw;            /* 16:9 לפי רוחב */
+  min-width: 177.78vh; min-height: 100%;    /* 16:9 לפי גובה — כיסוי מלא (cover) */
+  border: 0; pointer-events: none;
+}
 .hero-overlay { position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg,rgba(15,40,84,.70),rgba(19,56,105,.88)); }
 .hero-content { position: relative; z-index: 2; }
 @keyframes heroPan { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
