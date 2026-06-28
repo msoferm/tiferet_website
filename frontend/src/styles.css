@@ -219,6 +219,7 @@ img { max-width: 100%; }
     background: #fff; padding: 20px 32px; gap: 18px; border-bottom: 1px solid var(--line);
   }
   .nav-toggle { display: block; }
+  .hero { min-height: 460px; padding: 72px 24px 110px; }
   .hero h1 { font-size: 40px; }
   .hero p { font-size: 18px; }
   .h2 { font-size: 30px; }
@@ -227,6 +228,41 @@ img { max-width: 100%; }
   .footer-grid { grid-template-columns: 1fr; gap: 28px; }
   .section { padding: 48px 20px; }
   .split { grid-template-columns: 1fr !important; }
+}
+
+/* ---------- טלפונים (מסך צר) ---------- */
+@media (max-width: 520px) {
+  .nav-inner { padding: 12px 18px; }
+  .nav-logo img { height: 42px; }
+  .btn-donate { padding: 9px 16px; font-size: 14px; }
+  .nav-links.open { top: 66px; padding: 18px 22px; }
+
+  .hero { min-height: 420px; padding: 56px 18px 86px; }
+  .hero h1 { font-size: 31px; line-height: 1.15; }
+  .hero p { font-size: 16px; }
+  .badge-pill { font-size: 12px; margin-bottom: 18px; }
+  .btn { padding: 13px 22px; font-size: 15px; }
+  .hero-btns { gap: 10px; }
+  .hero-btns .btn { flex: 1 1 42%; text-align: center; }
+
+  .h2 { font-size: 25px; }
+  .lead { font-size: 15px; }
+  .section { padding: 40px 16px; }
+
+  /* שורת סטטיסטיקות — אנכית ונקייה */
+  .stat-row { flex-direction: column; gap: 4px; padding: 18px; }
+  .stat-sep { display: none; }
+  .stat-num { font-size: 30px; }
+
+  .card { padding: 22px; }
+  .footer { padding: 40px 20px 24px; }
+
+  .donate-band { padding: 52px 18px; }
+  .donate-band h2 { font-size: 28px; }
+  .donate-band p { font-size: 16px; }
+  .donate-chip { padding: 14px 22px; }
+  .donate-chip .amt { font-size: 22px; }
+  .info-panel { padding: 24px; }
 }
 
 /* ---------- פריסת split ---------- */

@@ -62,6 +62,7 @@ export default function AdminApp() {
   return (
     <ToastProvider>
       <div className="adm">
+        {sideOpen && <div className="adm-backdrop" onClick={() => setSideOpen(false)} />}
         <div className={`adm-side ${sideOpen ? 'open' : ''}`} onClick={() => setSideOpen(false)}>
           <div className="adm-brand">
             <img src="/logo.png" alt="" />
@@ -85,7 +86,7 @@ export default function AdminApp() {
 
         <div className="adm-main">
           <div className="adm-top">
-            <button className="bt bt-ghost" style={{ display: 'none' }} id="m-toggle" onClick={() => setSideOpen(true)}>☰</button>
+            <button className="bt bt-ghost adm-burger" onClick={(e) => { e.stopPropagation(); setSideOpen(true); }} aria-label="תפריט">☰</button>
             <h1>שלום, {user.full_name || user.username} 👋</h1>
             <Link to="/" target="_blank" className="bt bt-soft">צפייה באתר ↗</Link>
           </div>

@@ -44,7 +44,7 @@ export default function SettingsEditor() {
         <div className="adm-panel" key={cat} style={{ marginBottom: 18 }}>
           <div className="adm-panel-head"><h2>{CATEGORY_LABELS[cat] || cat}</h2></div>
           <div style={{ padding: '20px 22px' }}>
-            <div className="fld-row" style={{ gridTemplateColumns: '1fr 1fr', gap: 18 }}>
+            <div className="fld-row" style={{ gap: 18 }}>
               {items.map((s) => (
                 <div className="fld" key={s.key} style={{ gridColumn: s.type === 'textarea' ? '1 / -1' : 'auto' }}>
                   <label>{s.label || s.key}</label>
