@@ -24,6 +24,8 @@ INSERT INTO settings (key, value, category, label, type, sort_order) VALUES
   ('candle_time',      '19:13',                        'shabbat', 'הדלקת נרות',     'text',     30),
   ('havdala_time',     '20:25',                        'shabbat', 'צאת השבת',       'text',     31),
   ('current_parsha',   'פרשת בלק',                     'shabbat', 'פרשת השבוע',     'text',     32),
+  ('shabbat_auto',     'on',                           'shabbat', 'משיכת זמני שבת אוטומטית (on/off)', 'text', 33),
+  ('shabbat_geonameid','281184',                       'shabbat', 'קוד מיקום Hebcal (281184 = ירושלים)', 'text', 34),
   ('footer_about',     'בית חב״ד תפארת מנחם — קהילה חמה בלב נחלאות, ירושלים. דלת פתוחה לכל יהודי.', 'general', 'טקסט פוטר', 'textarea', 40)
 ON CONFLICT (key) DO NOTHING;
 

@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useFetch } from '../lib/useApi.js';
 import { api } from '../lib/api.js';
+import { fetchShabbat } from '../lib/shabbat.js';
 import SiteLayout, { Tile } from '../components/SiteLayout.jsx';
 
 // חילוץ מזהה הסרטון מקישור יוטיוב (watch / youtu.be / embed / shorts / מזהה גולמי)
@@ -20,6 +21,14 @@ export default function Home() {
   const [sent, setSent] = useState(false);
   const [err, setErr] = useState('');
   const [videoOpen, setVideoOpen] = useState(false);
+  const [shabbat, setShabbat] = useState(null);
+
+  // משיכה אוטומטית של זמני שבת מ-Hebcal (אלא אם כובה בהגדרות)
+  useEffect(() => {
+    const st = data?.settings;
+    if (!st || st.shabbat_auto === 'off') return;
+    fetchShabbat(st.shabbat_geonameid || '281184').then(setShabbat).catch(() => {});
+  }, [data]);
 
   if (loading || !data) return <div className="center" style={{ padding: 120 }}>טוען…</div>;
 
@@ -30,6 +39,10 @@ export default function Home() {
   const aboutVideo = youtubeId(s.about_video_url);
   // צילום מסך לפני הנגינה: תמונה מותאמת מה-CMS, אחרת התמונה הממוזערת של הסרטון
   const aboutPoster = s.about_video_poster || (aboutVideo ? `https://i.ytimg.com/vi/${aboutVideo}/maxresdefault.jpg` : null);
+  // זמני שבת: ערך אוטומטי מ-Hebcal אם קיים, אחרת הערך הידני מההגדרות
+  const candleTime = (shabbat && shabbat.candles) || s.candle_time;
+  const havdalaTime = (shabbat && shabbat.havdala) || s.havdala_time;
+  const parsha = (shabbat && shabbat.parsha) || s.current_parsha;
 
   // קיבוץ זמני תפילה לפי קטגוריה
   const prayerByCat = {};
@@ -89,7 +102,7 @@ export default function Home() {
       {/* זמני תפילה */}
       <div id="times" className="section wrap">
         <h2 className="h2">זמני תפילות</h2>
-        <p className="lead">עדכני לשבוע {s.current_parsha} · נחלאות, ירושלים</p>
+        <p className="lead">עדכני לשבוע {parsha} · נחלאות, ירושלים</p>
         <div className="times-grid">
           {Object.entries(prayerByCat).map(([cat, info]) => (
             <div className="times-col" key={cat}>
@@ -103,11 +116,11 @@ export default function Home() {
         <div className="shabbat-row">
           <div className="shabbat-card" style={{ background: '#e2f0fa' }}>
             <span style={{ fontWeight: 700, color: '#133869' }}>🕯️ הדלקת נרות</span>
-            <b style={{ color: '#2f86c9' }}>{s.candle_time}</b>
+            <b style={{ color: '#2f86c9' }}>{candleTime}</b>
           </div>
           <div className="shabbat-card" style={{ background: '#133869' }}>
             <span style={{ fontWeight: 700, color: '#cfe3f3' }}>✨ צאת השבת</span>
-            <b style={{ color: '#6fb6e6' }}>{s.havdala_time}</b>
+            <b style={{ color: '#6fb6e6' }}>{havdalaTime}</b>
           </div>
         </div>
       </div>
