@@ -27,7 +27,10 @@ INSERT INTO settings (key, value, category, label, type, sort_order) VALUES
   ('current_parsha',   'פרשת בלק',                     'shabbat', 'פרשת השבוע',     'text',     32),
   ('shabbat_auto',     'on',                           'shabbat', 'משיכת זמני שבת אוטומטית (on/off)', 'text', 33),
   ('shabbat_geonameid','281184',                       'shabbat', 'קוד מיקום Hebcal (281184 = ירושלים)', 'text', 34),
-  ('footer_about',     'בית חב״ד תפארת מנחם — קהילה חמה בלב נחלאות, ירושלים. דלת פתוחה לכל יהודי.', 'general', 'טקסט פוטר', 'textarea', 40)
+  ('footer_about',     'בית חב״ד תפארת מנחם — קהילה חמה בלב נחלאות, ירושלים. דלת פתוחה לכל יהודי.', 'general', 'טקסט פוטר', 'textarea', 40),
+  ('social_facebook',  '',                             'social',  'פייסבוק (קישור)',  'text',     50),
+  ('social_instagram', '',                             'social',  'אינסטגרם (קישור)', 'text',     51),
+  ('social_waze',      '',                             'social',  'Waze (קישור)',     'text',     52)
 ON CONFLICT (key) DO NOTHING;
 
 -- ---------- בלוקי תוכן ----------

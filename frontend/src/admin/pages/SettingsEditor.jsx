@@ -10,6 +10,7 @@ const CATEGORY_LABELS = {
   contact: 'פרטי יצירת קשר',
   stats: 'סטטיסטיקות',
   shabbat: 'שבת וזמנים',
+  social: 'רשתות חברתיות',
 };
 
 export default function SettingsEditor() {
