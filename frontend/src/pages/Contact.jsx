@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useFetch } from '../lib/useApi.js';
 import { api } from '../lib/api.js';
-import SiteLayout, { Tile } from '../components/SiteLayout.jsx';
+import SiteLayout from '../components/SiteLayout.jsx';
+import MapEmbed from '../components/MapEmbed.jsx';
 
 export default function Contact() {
   const { data: boot } = useFetch('/public/bootstrap');
@@ -11,6 +12,7 @@ export default function Contact() {
   const [err, setErr] = useState('');
   if (!boot) return <div className="center" style={{ padding: 120 }}>טוען…</div>;
   const s = boot.settings;
+  const mapQuery = s.map_query || s.contact_address;
 
   // זמני תפילה ראשונים מכל קטגוריה
   const firstByCat = {};
@@ -97,7 +99,7 @@ export default function Contact() {
               <div className="row"><span style={{ fontSize: 20 }}>📞</span><div><b>טלפון</b><div style={{ fontSize: 15 }}>{s.contact_phone}</div></div></div>
               <div className="row" style={{ marginBottom: 0 }}><span style={{ fontSize: 20 }}>🕒</span><div><b>שעות פתיחה</b><div style={{ fontSize: 15 }}>{s.contact_hours}</div></div></div>
             </div>
-            <Tile caption={`מפה · ${s.contact_address}`} from="#2f6fc0" to="#6fb6e6" style={{ flex: 1, minHeight: 210 }} />
+            <MapEmbed query={mapQuery} style={{ flex: 1, minHeight: 210 }} />
           </div>
         </div>
       </div>

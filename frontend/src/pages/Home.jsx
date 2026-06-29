@@ -4,6 +4,7 @@ import { useFetch } from '../lib/useApi.js';
 import { api } from '../lib/api.js';
 import { fetchShabbat } from '../lib/shabbat.js';
 import SiteLayout, { Tile } from '../components/SiteLayout.jsx';
+import MapEmbed from '../components/MapEmbed.jsx';
 
 // חילוץ מזהה הסרטון מקישור יוטיוב (watch / youtu.be / embed / shorts / מזהה גולמי)
 function youtubeId(url) {
@@ -43,6 +44,7 @@ export default function Home() {
   const candleTime = (shabbat && shabbat.candles) || s.candle_time;
   const havdalaTime = (shabbat && shabbat.havdala) || s.havdala_time;
   const parsha = (shabbat && shabbat.parsha) || s.current_parsha;
+  const mapQuery = s.map_query || s.contact_address;
 
   // קיבוץ זמני תפילה לפי קטגוריה
   const prayerByCat = {};
@@ -277,7 +279,7 @@ export default function Home() {
               <div className="row"><span style={{ fontSize: 20 }}>✉</span><div><b>אימייל</b><div style={{ fontSize: 15 }}>{s.contact_email}</div></div></div>
               <div className="row" style={{ marginBottom: 0 }}><span style={{ fontSize: 20 }}>🕒</span><div><b>שעות</b><div style={{ fontSize: 15 }}>{s.contact_hours}</div></div></div>
             </div>
-            <Tile caption={`מפה · ${s.contact_address}`} from="#2f6fc0" to="#6fb6e6" style={{ flex: 1, minHeight: 170 }} />
+            <MapEmbed query={mapQuery} style={{ flex: 1, minHeight: 200 }} />
           </div>
         </div>
       </div>

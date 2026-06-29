@@ -198,6 +198,10 @@ img { max-width: 100%; }
 .page-hero h1 { font-weight: 800; font-size: 48px; margin: 0 0 14px; color: #fff; position: relative; }
 .page-hero p { font-size: 20px; line-height: 1.6; color: #cfe0f2; margin: 0; max-width: 620px; position: relative; }
 
+/* ---------- מפת גוגל מוטמעת ---------- */
+.map-embed { position: relative; overflow: hidden; border-radius: 16px; min-height: 210px; background: #e9eef4; }
+.map-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
 /* ---------- מדיה/וידאו באזור "קצת עלינו" ---------- */
 .about-media {
   position: relative; width: 100%; min-height: 280px; border: none; cursor: pointer; padding: 0;

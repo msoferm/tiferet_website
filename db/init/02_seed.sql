@@ -17,6 +17,7 @@ INSERT INTO settings (key, value, category, label, type, sort_order) VALUES
   ('contact_email',    'info@tiferet-menachem.org.il', 'contact', 'אימייל',         'text',     12),
   ('contact_address',  'רח׳ בצלאל, שכונת נחלאות, ירושלים', 'contact', 'כתובת',       'text',     13),
   ('contact_hours',    'דלת פתוחה כל ימות השבוע',       'contact', 'שעות פתיחה',     'text',     14),
+  ('map_query',        '',                             'contact', 'מיקום למפה (כתובת/קואורדינטות — ברירת מחדל: הכתובת)', 'text', 15),
   ('stat_minyanim',    '3',                            'stats',   'מניינים ביום',   'number',   20),
   ('stat_classes',     '12',                           'stats',   'שיעורים שבועיים','number',   21),
   ('stat_days',        '365',                          'stats',   'ימים של חסד',    'number',   22),
