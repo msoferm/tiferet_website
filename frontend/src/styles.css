@@ -198,6 +198,40 @@ img { max-width: 100%; }
 .page-hero h1 { font-weight: 800; font-size: 48px; margin: 0 0 14px; color: #fff; position: relative; }
 .page-hero p { font-size: 20px; line-height: 1.6; color: #cfe0f2; margin: 0; max-width: 620px; position: relative; }
 
+/* ---------- מדיה/וידאו באזור "קצת עלינו" ---------- */
+.about-media {
+  position: relative; width: 100%; min-height: 280px; border: none; cursor: pointer; padding: 0;
+  border-radius: 16px; overflow: hidden; display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 18px 40px rgba(19,56,105,.18);
+}
+.about-media-bg { position: absolute; inset: 0; background: linear-gradient(135deg,#0f2c54,#1b4a8a 45%,#2f86c9 100%); }
+.about-media::after { content: ''; position: absolute; inset: 0; background: rgba(12,36,71,.18); transition: background .2s; }
+.about-media:hover::after { background: rgba(12,36,71,.04); }
+.about-play {
+  position: relative; z-index: 2; width: 78px; height: 78px; border-radius: 50%;
+  background: rgba(255,255,255,.94); color: var(--blue-500); display: flex; align-items: center; justify-content: center;
+  font-size: 26px; padding-inline-start: 5px; box-shadow: 0 14px 34px rgba(0,0,0,.32); transition: transform .15s;
+}
+.about-media:hover .about-play { transform: scale(1.09); }
+.about-media-label { position: absolute; z-index: 2; bottom: 18px; color: #fff; font-family: 'Heebo', sans-serif; font-weight: 700; font-size: 15px; text-shadow: 0 1px 8px rgba(0,0,0,.35); }
+
+/* ---------- לייטבוקס וידאו ---------- */
+.lightbox {
+  position: fixed; inset: 0; z-index: 200; background: rgba(8,20,40,.82);
+  -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+  display: flex; align-items: center; justify-content: center; padding: 24px; animation: lbIn .18s ease;
+}
+@keyframes lbIn { from { opacity: 0 } to { opacity: 1 } }
+.lightbox-inner { position: relative; width: 100%; max-width: 720px; }
+.lb-frame { position: relative; width: 100%; padding-top: 56.25%; border-radius: 16px; overflow: hidden; background: #000; box-shadow: 0 30px 80px rgba(0,0,0,.55); }
+.lb-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.lb-close {
+  position: absolute; top: -46px; left: 0; width: 38px; height: 38px; border-radius: 50%; border: none;
+  background: rgba(255,255,255,.16); color: #fff; font-size: 24px; line-height: 1; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; transition: background .15s;
+}
+.lb-close:hover { background: rgba(255,255,255,.3); }
+
 /* ---------- פוטר ---------- */
 .footer { background: var(--navy-900); padding: 54px 32px 28px; color: #a8c2e0; }
 .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1.2fr; gap: 40px; padding-bottom: 30px; border-bottom: 1px solid rgba(255,255,255,.1); }

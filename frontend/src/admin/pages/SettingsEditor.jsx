@@ -5,6 +5,7 @@ import { useToast } from '../../components/Toast.jsx';
 const CATEGORY_LABELS = {
   general: 'כללי',
   hero: 'אזור פתיחה (Hero)',
+  about: 'אזור "קצת עלינו"',
   contact: 'פרטי יצירת קשר',
   stats: 'סטטיסטיקות',
   shabbat: 'שבת וזמנים',

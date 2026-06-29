@@ -19,6 +19,7 @@ export default function Home() {
   const [form, setForm] = useState({ name: '', phone: '', email: '', subject: 'שאלה כללית', message: '' });
   const [sent, setSent] = useState(false);
   const [err, setErr] = useState('');
+  const [videoOpen, setVideoOpen] = useState(false);
 
   if (loading || !data) return <div className="center" style={{ padding: 120 }}>טוען…</div>;
 
@@ -26,6 +27,7 @@ export default function Home() {
   const heroVideo = youtubeId(s.hero_video_url);
   const about = data.blocks.home_about || {};
   const aboutParas = (about.body || '').split('||');
+  const aboutVideo = youtubeId(s.about_video_url);
 
   // קיבוץ זמני תפילה לפי קטגוריה
   const prayerByCat = {};
@@ -118,7 +120,15 @@ export default function Home() {
               <p key={i} style={{ fontSize: 18, lineHeight: 1.8, color: 'var(--body)', margin: '0 0 16px' }}>{p}</p>
             ))}
           </div>
-          <Tile caption="תמונת בית הכנסת · 900×700" style={{ minHeight: 280 }} />
+          {aboutVideo ? (
+            <button className="about-media" onClick={() => setVideoOpen(true)} aria-label="צפייה בסרטון">
+              <span className="about-media-bg" />
+              <span className="about-play">▶</span>
+              <span className="about-media-label">צפו בסרטון</span>
+            </button>
+          ) : (
+            <Tile caption="תמונת בית הכנסת · 900×700" style={{ minHeight: 280 }} />
+          )}
         </div>
       </div>
 
@@ -239,6 +249,24 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      {/* לייטבוקס וידאו (אזור "קצת עלינו") */}
+      {videoOpen && aboutVideo && (
+        <div className="lightbox" onClick={() => setVideoOpen(false)}>
+          <div className="lightbox-inner" onClick={(e) => e.stopPropagation()}>
+            <button className="lb-close" onClick={() => setVideoOpen(false)} aria-label="סגירה">×</button>
+            <div className="lb-frame">
+              <iframe
+                src={`https://www.youtube-nocookie.com/embed/${aboutVideo}?autoplay=1&modestbranding=1&rel=0&playsinline=1&iv_load_policy=3&color=white`}
+                title="סרטון"
+                allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+                allowFullScreen
+                frameBorder="0"
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </SiteLayout>
   );
 }
