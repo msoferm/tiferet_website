@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { api } from '../../lib/api.js';
 import { useToast } from '../../components/Toast.jsx';
+import Field from '../Field.jsx';
 
 const CATEGORY_LABELS = {
   general: 'כללי',
@@ -47,14 +48,20 @@ export default function SettingsEditor() {
           <div style={{ padding: '20px 22px' }}>
             <div className="fld-row" style={{ gap: 18 }}>
               {items.map((s) => (
-                <div className="fld" key={s.key} style={{ gridColumn: s.type === 'textarea' ? '1 / -1' : 'auto' }}>
-                  <label>{s.label || s.key}</label>
-                  {s.type === 'textarea' ? (
-                    <textarea rows={3} value={values[s.key] ?? ''} onChange={(e) => setValues({ ...values, [s.key]: e.target.value })} />
-                  ) : (
-                    <input type={s.type === 'number' ? 'text' : 'text'} value={values[s.key] ?? ''} onChange={(e) => setValues({ ...values, [s.key]: e.target.value })} />
-                  )}
-                </div>
+                s.type === 'image' ? (
+                  <div key={s.key} style={{ gridColumn: '1 / -1' }}>
+                    <Field def={{ name: s.key, label: s.label || s.key, type: 'image' }} value={values[s.key]} onChange={(name, val) => setValues({ ...values, [name]: val })} />
+                  </div>
+                ) : (
+                  <div className="fld" key={s.key} style={{ gridColumn: s.type === 'textarea' ? '1 / -1' : 'auto' }}>
+                    <label>{s.label || s.key}</label>
+                    {s.type === 'textarea' ? (
+                      <textarea rows={3} value={values[s.key] ?? ''} onChange={(e) => setValues({ ...values, [s.key]: e.target.value })} />
+                    ) : (
+                      <input type="text" value={values[s.key] ?? ''} onChange={(e) => setValues({ ...values, [s.key]: e.target.value })} />
+                    )}
+                  </div>
+                )
               ))}
             </div>
           </div>

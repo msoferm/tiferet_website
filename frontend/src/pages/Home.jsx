@@ -28,6 +28,8 @@ export default function Home() {
   const about = data.blocks.home_about || {};
   const aboutParas = (about.body || '').split('||');
   const aboutVideo = youtubeId(s.about_video_url);
+  // צילום מסך לפני הנגינה: תמונה מותאמת מה-CMS, אחרת התמונה הממוזערת של הסרטון
+  const aboutPoster = s.about_video_poster || (aboutVideo ? `https://i.ytimg.com/vi/${aboutVideo}/maxresdefault.jpg` : null);
 
   // קיבוץ זמני תפילה לפי קטגוריה
   const prayerByCat = {};
@@ -123,6 +125,23 @@ export default function Home() {
           {aboutVideo ? (
             <button className="about-media" onClick={() => setVideoOpen(true)} aria-label="צפייה בסרטון">
               <span className="about-media-bg" />
+              {aboutPoster && (
+                <img
+                  className="about-media-img"
+                  src={aboutPoster}
+                  alt=""
+                  loading="lazy"
+                  onError={(e) => {
+                    // אם maxres לא קיים — נופלים ל-hqdefault (תמיד קיים)
+                    if (aboutVideo && !e.currentTarget.dataset.fb) {
+                      e.currentTarget.dataset.fb = '1';
+                      e.currentTarget.src = `https://i.ytimg.com/vi/${aboutVideo}/hqdefault.jpg`;
+                    } else {
+                      e.currentTarget.style.display = 'none';
+                    }
+                  }}
+                />
+              )}
               <span className="about-play">▶</span>
               <span className="about-media-label">צפו בסרטון</span>
             </button>

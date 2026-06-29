@@ -11,6 +11,7 @@ INSERT INTO settings (key, value, category, label, type, sort_order) VALUES
   ('hero_subtitle',    'תפילות במניין, שיעורי תורה וחסידות, ופעילות לכל מעגל השנה — בלב השכונה.', 'hero', 'תת כותרת', 'textarea', 5),
   ('hero_video_url',   '',                             'hero',    'קישור לסרטון רקע (YouTube)', 'text', 6),
   ('about_video_url',  '',                             'about',   'קישור לסרטון (אזור "קצת עלינו")', 'text', 7),
+  ('about_video_poster','',                            'about',   'צילום מסך לסרטון (לא חובה — ברירת מחדל: תמונת הסרטון)', 'image', 8),
   ('contact_phone',    '02-123-4567',                  'contact', 'טלפון',          'text',     10),
   ('contact_whatsapp', '972500000000',                 'contact', 'וואטסאפ',        'text',     11),
   ('contact_email',    'info@tiferet-menachem.org.il', 'contact', 'אימייל',         'text',     12),
